@@ -1,5 +1,3 @@
-//package CF_Rated_1000.swap_and_delete_1;
-
 import java.util.Scanner;
 
 public class Main {
