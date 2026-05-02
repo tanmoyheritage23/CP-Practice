@@ -1,3 +1,6 @@
 # Java compiled bytecode
 *.class
 *.DS_Store
+
+# IntelliJ IDEA project files
+.idea/

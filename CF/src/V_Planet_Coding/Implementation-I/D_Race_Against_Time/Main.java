@@ -1,5 +1,3 @@
-package V_Planet_Coding.Implementation.C_Bark_to_Unlock;
-
 import java.io.*;
 import java.util.*;
 
@@ -19,38 +17,50 @@ public class Main {
         FastReader in = new FastReader(inputStream);
         PrintWriter out = new PrintWriter(outputStream);
 
-        
         StringBuilder sb = new StringBuilder();
-        while (true) {
+        while(true){
             try{
-                String password = in.next();
-                int n = in.nextInt();
-                List<String>words = new ArrayList<>();
-                for(int i = 0; i < n; i++){
-                    words.add(in.nextLine());
+                int h = in.nextInt();
+                int m = in.nextInt();
+                int s = in.nextInt();
+                int t1 = in.nextInt();
+                int t2 = in.nextInt();
+
+                // Convert all to continuous positions
+                double hour = h % 12 + m / 60.0 + s / 3600.0;  // 0.5125
+                double minute = m / 5.0 + s / 300.0; // 6.15
+                double second = s / 5.0; // 9
+
+                // Normalize t1 and t2 (12 → 0)
+                double p1 = t1 % 12; // 3
+                double p2 = t2 % 12; // 11
+
+                // Store all points
+                List<Double> list = new ArrayList<>();
+                list.add(hour);
+                list.add(minute);
+                list.add(second);
+                list.add(p1);
+                list.add(p2);
+
+                Collections.sort(list);
+
+                int idx1 = list.indexOf(p1);
+                int idx2 = list.indexOf(p2);
+
+                // Check if adjacent in circular order
+                int diff = Math.abs(idx1 - idx2);
+
+                if (diff == 1 || diff == 4) {
+                    sb.append("YES\n");
+                } else {
+                    sb.append("NO\n");
                 }
-
-                boolean found = false;
-
-                for(int i = 0; i < n; i++){
-                    String word = words.get(i);
-                    for(int j = 0; j < n; j++){
-                        String formedWord = word.concat(words.get(j));
-                        for(int k = 0; k < formedWord.length() - 1; k++){
-                            String possiblePassword = formedWord.substring(k, k+2);
-                            if(password.equals(possiblePassword)){
-                                found = true;
-                            }
-                        }
-                    }
-                }
-
-                if(found) sb.append("YES\n");
-                else sb.append("NO\n");
 
             }catch(Exception ex){
                 break;
             }
+            
         }
 
         out.print(sb);

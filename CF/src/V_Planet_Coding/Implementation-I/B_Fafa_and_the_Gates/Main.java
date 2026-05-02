@@ -1,5 +1,3 @@
-package V_Planet_Coding.Implementation.B_Fafa_and_the_Gates;
-
 import java.io.*;
 import java.util.*;
 

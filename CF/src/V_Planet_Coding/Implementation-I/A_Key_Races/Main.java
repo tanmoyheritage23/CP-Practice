@@ -1,5 +1,3 @@
-package V_Planet_Coding.Implementation.A_Key_Races;
-
 import java.io.*;
 import java.util.*;
 
